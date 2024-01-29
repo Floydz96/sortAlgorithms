@@ -1,6 +1,6 @@
+#include <helper.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <helper.h>
 
 int getRandomIntInRange(int min, int max) {
   return (rand() % (max - min + 1)) + min;
@@ -28,20 +28,24 @@ int *createArray(int size, int maxNumSize) {
   return arrayBuffer;
 }
 
+// this function takes so long when generating large arrays
 int alreadyContains(int *arr, int size, int val) {
   int i;
-  for (i = 0; i < size; i++) {
-    if (arr[i] == val) return 1;
-  }
+//  for (i = 0; i < size; i++) {
+//    if (arr[i] == val)
+//      return 0;
+//  }
 
   return 0;
 }
 
 void printArray(int *arr, int size) {
   int i;
+  printf("\n");
   for (i = 0; i < size; i++) {
     printf("%d ", arr[i]);
   }
+  printf("\n");
 }
 
 int isOrdered(int *arr, int size) {
@@ -49,8 +53,15 @@ int isOrdered(int *arr, int size) {
   for (i = size - 1; i >= 1; i--) {
     // printf("array size is %d and pos1 %d and pos2 %d", size, arr[i], arr[i -
     // 1]);
-    if (!(arr[i] > arr[i - 1])) return 0;
+    if (!(arr[i] > arr[i - 1]))
+      return 0;
   }
 
   return 1;
+}
+
+void swapElements(int *arr, int pos1, int pos2) {
+  int buff = arr[pos1];
+  arr[pos1] = arr[pos2];
+  arr[pos2] = buff;
 }
